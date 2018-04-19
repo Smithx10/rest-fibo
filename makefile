@@ -22,12 +22,8 @@ help:
 # Container builds
 
 ## Builds the application container image locally
-build: build/tester
-	docker build -t=$(image):$(tag) .
-
-## Build the test running container
-build/tester:
-	docker build -f Dockerfile -t=$(testImage):$(tag) .
+build:
+	docker build -f fibo/Dockerfile -t=$(image):$(tag) .
 
 ## Push the current application container images to the Docker Registry
 push:
