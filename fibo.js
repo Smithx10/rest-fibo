@@ -57,11 +57,11 @@ server.get('/', function (req, res, next) {
    next();
 });
 
-server.get('/getFibonacci/:num', getFibonacciRespond);
+server.get('/getFibonacci/:num', getFibonacciResponse);
 
 
 // Create a Simple Respond function
-function getFibonacciRespond(req, res, next) {
+function getFibonacciResponse(req, res, next) {
     var response;
     // Handle bad user input 
     if (isNaN(req.params.num)) {
