@@ -1,7 +1,9 @@
 var assert = require('assert-plus');
-var restify = require('restify');
-var handler = require('restify-errors');
+// var consul = require('consul'); // Want to demonstrate ontainerPilot instead of handling this all in the application.
 var bunyan = require('bunyan');
+var handler = require('restify-errors');
+// var manta = require('manta'); // Place holder for Shipping logs to Manta (Object Storage)
+var restify = require('restify');
 
 var server = restify.createServer();
 
