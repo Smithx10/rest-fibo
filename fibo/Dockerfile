@@ -5,6 +5,8 @@ ENV CONTAINERPILOT=/etc/containerpilot.json5
 RUN apk update \
     && apk add \
         curl \
+        make \
+        python \
     && mkdir -p /opt/local/fibo
 
 # Add jq
