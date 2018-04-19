@@ -1,8 +1,11 @@
 FROM node:9.11-alpine
 
+ENV CONTAINERPILOT=/etc/containerpilot.json5
+
 RUN apk update \
     && apk add \
-        curl 
+        curl \
+    && mkdir -p /opt/local/fibo
 
 # Add jq
  RUN export JQ_VER=1.5 \
@@ -13,7 +16,6 @@ RUN apk update \
      && chmod +x /bin/jq
 
 # Add ContainerPilot and set its configuration
-ENV CONTAINERPILOT=/etc/containerpilot.json5
 RUN export CP_VER=3.3.0 \
     && export CP_PKG=containerpilot-${CP_VER}.tar.gz \
     && export CP_SHA1=$(curl -L https://github.com/joyent/containerpilot/releases/download/${CP_VER}/containerpilot-${CP_VER}.sha1.txt | awk '{print $1}') \
@@ -37,4 +39,9 @@ RUN export CONSUL_VER=1.0.7 \
     && mkdir /data \
     && mkdir /config
 
+COPY fibo/src /opt/local/fibo/
 
+# Build fibo
+WORKDIR /opt/local/fibo
+
+RUN npm install
