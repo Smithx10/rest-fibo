@@ -8,7 +8,7 @@ MAKEFLAGS += --warn-undefined-variables
 GIT_COMMIT ?= $(shell git rev-parse --short HEAD)
 GIT_BRANCH ?= $(shell git rev-parse --abbrev-ref HEAD)
 
-namespace ?= Smithx10
+namespace ?= smithx10
 tag := branch-$(shell basename $(GIT_BRANCH))
 image := $(namespace)/fibo
 testImage := $(namespace)/fibo-testrunner
@@ -27,7 +27,7 @@ build: build/tester
 
 ## Build the test running container
 build/tester:
-	docker build -f test/Dockerfile -t=$(testImage):$(tag) .
+	docker build -f Dockerfile -t=$(testImage):$(tag) .
 
 ## Push the current application container images to the Docker Registry
 push:
@@ -83,10 +83,6 @@ test/triton/dev:
 
 
 # ------------------------------------------------
-# Multi-datacenter usage
-clean/triton-multi-dc:
-	rm -rf examples/triton-multi-dc/_env* examples/triton-multi-dc/docker-compose-*.yml
-
 
 ## Print environment for build debugging
 debug:
