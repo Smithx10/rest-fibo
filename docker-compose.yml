@@ -1,0 +1,45 @@
+version: '2.1'
+
+services:
+  fibo:
+    image: smithx10/fibo:${TAG:-latest}
+    command: >
+      /usr/local/bin/containerpilot
+    restart: always
+    mem_limit: 512m
+    network_mode: bridge
+    environment:
+      - CONSUL_AGENT=1
+      - CONSUL=consul
+      - FIBO_LOGPATH=/var/log
+      - FIBO_DEV=1
+    links:
+      - consul:consul
+        
+  fabio:
+    image: smithx10/fabio:latest
+    mem_limit: 512m
+    restart: always
+    ports:
+      - 80:80
+      - 9998:9998
+    network_mode: bridge
+    environment:
+      - CONSUL_AGENT=1
+      - CONSUL=consul
+    command: >
+      /usr/local/bin/containerpilot
+    links:
+      - consul:consul
+  consul:
+    image: autopilotpattern/consul:${TAG:-latest}
+    command: >
+       /usr/local/bin/containerpilot
+    restart: always
+    mem_limit: 128m
+    ports:
+      - 8500:8500
+    network_mode: bridge
+    environment:
+      - CONSUL=consul
+      - CONSUL_DEV=1

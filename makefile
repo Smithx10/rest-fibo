@@ -23,7 +23,8 @@ help:
 
 ## Builds the application container image locally
 build:
-	docker build -f fibo/Dockerfile -t=$(image):$(tag) .
+	docker build -f fibo/Dockerfile -t=smithx10/fibo:latest .
+	docker build -f fabio/Dockerfile -t=smithx10/fabio:latest .
 
 ## Push the current application container images to the Docker Registry
 push:

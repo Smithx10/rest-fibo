@@ -1,0 +1,67 @@
+{
+  consul: '{{ if .CONSUL_AGENT }}localhost{{ else }}{{ .CONSUL | default "consul"}}{{ end }}:8500',
+  logging: {
+    level: '{{ .LOG_LEVEL | default "INFO" }}'
+  },
+  jobs: [
+    {
+      name: 'preStart',
+      exec: [
+        "/usr/local/bin/preStart.sh"
+      ],
+      {{ if .CONSUL_AGENT }}when: {
+        source: "consul-agent",
+        once: "healthy"
+      },{{ end }}
+    },
+    {
+      name: '{{ .SERVICE_NAME | default "fibo" }}',
+      exec: [
+        "node",
+        "--abort-on-uncaught-exception", 
+        "/opt/local/fibo/fibo.js"
+      ],
+      port: 8080,
+      tags: [
+      {{ if .FIBO_DEV }}"urlprefix-localhost/getFibonacci/"{{ else }}"urlprefix-fibo.svc.smith.tritonhost.com/getFibonacci/"{{ end}},
+        "version-1.0.0"
+      ],
+      when: {
+        source: "preStart",
+        once: "exitSuccess"
+      },
+      health: {
+        exec: "curl -so /dev/null localhost:8080/getFibonacci/10",
+        interval: 5,
+        ttl: 10
+      },
+      consul: {
+        deregisterCriticalServiceAfter: "5m",
+      }
+    },
+    {{ if .CONSUL_AGENT }}{
+      name: "consul-agent",
+      restarts: "unlimited",
+      exec: [
+        "/usr/local/bin/consul", "agent",
+        "-bind={{`{{ GetInterfaceIP \"eth0\" }}`}}",
+        "-data-dir=/data",
+        "-config-dir=/config"
+      ],
+      health: {
+        exec: 'consul join {{ .CONSUL | default "consul"}}',
+        interval: 5,
+        ttl: 10
+      },
+      stopTimeout: "5s"
+    },
+    {
+      name: "leave-consul",
+      exec: "consul leave",
+      when: {
+        source: "consul-agent",
+        once: "stopping"
+      }
+    }{{ end }}
+  ]
+}

@@ -1,15 +1,17 @@
 var assert = require('assert-plus');
 // var consul = require('consul'); // Want to demonstrate ontainerPilot instead of handling this all in the application.
 var bunyan = require('bunyan');
+var epimetheus = require('epimetheus');
 var handler = require('restify-errors');
 // var manta = require('manta'); // Place holder for Shipping logs to Manta (Object Storage)
 var restify = require('restify');
 
 var server = restify.createServer();
 
+epimetheus.instrument(server);
+
 // Set Log Path from EnvVar
 var FIBO_LOGPATH = (process.env.FIBO_LOGPATH) ? process.env.FIBO_LOGPATH : '/var/log';
-
 
 var log = bunyan.createLogger({
     name: 'fibo',
@@ -49,13 +51,11 @@ fibo.prototype.getFibonacci = function getFibonacci(num){
     return b;
 };
 
-log.info('start');
+log.info('starting');
 
 // Create our fibo Object
 var fibo = new fibo({log: log});
 
-// Create the http server
-var server = restify.createServer();
 
 // Define our Routes
 server.get('/', function (req, res, next) {
@@ -64,7 +64,6 @@ server.get('/', function (req, res, next) {
 });
 
 server.get('/getFibonacci/:num', getFibonacciResponse);
-
 
 // Create a Simple Respond function
 function getFibonacciResponse(req, res, next) {

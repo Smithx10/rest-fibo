@@ -4,6 +4,7 @@ ENV CONTAINERPILOT=/etc/containerpilot.json5
 
 RUN apk update \
     && apk add \
+        bash \
         curl \
         make \
         python \
@@ -42,6 +43,8 @@ RUN export CONSUL_VER=1.0.7 \
     && mkdir /config
 
 COPY fibo/src /opt/local/fibo/
+COPY fibo/etc/containerpilot.json5 /etc/containerpilot.json5
+COPY fibo/bin/preStart.sh /usr/local/bin/preStart.sh
 
 # Build fibo
 WORKDIR /opt/local/fibo
