@@ -1,0 +1,47 @@
+{
+  consul: '{{ if .CONSUL_AGENT }}localhost{{ else }}{{ .CONSUL | default "consul"}}{{ end }}:8500',
+  logging: {
+    level: '{{ .LOG_LEVEL | default "INFO" }}'
+  },
+  jobs: [
+    {
+      name: '{{ .SERVICE_NAME | default "fabio" }}',
+      exec: [
+        "/usr/sbin/fabio",
+        "-proxy.addr",
+        ":80"
+      ],
+      {{ if .CONSUL_AGENT }}when: {
+        source: "consul-agent",
+        once: "healthy"
+      },{{ end }}
+      consul: {
+        deregisterCriticalServiceAfter: "5m",
+      }
+    },
+    {{ if .CONSUL_AGENT }}{
+      name: "consul-agent",
+      restarts: "unlimited",
+      exec: [
+        "/usr/local/bin/consul", "agent",
+        "-bind={{`{{ GetInterfaceIP \"eth0\" }}`}}",
+        "-data-dir=/data",
+        "-config-dir=/config"
+      ],
+      health: {
+        exec: 'consul join {{ .CONSUL | default "consul"}}',
+        interval: 5,
+        ttl: 10
+      },
+      stopTimeout: "5s"
+    },
+    {
+      name: "leave-consul",
+      exec: "consul leave",
+      when: {
+        source: "consul-agent",
+        once: "stopping"
+      }
+    }{{ end }}
+  ]
+}
