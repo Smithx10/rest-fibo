@@ -47,37 +47,14 @@ ship:
 pull:
 	docker pull $(image):$(tag)
 
-## Run all integration tests
-test: test/compose test/triton
 
-## Run the integration test runner against Compose locally.
-test/compose:
-	docker run --rm \
-		-e TAG=$(tag) \
-		-e GIT_BRANCH=$(GIT_BRANCH) \
-		--network=bridge \
-		-v /var/run/docker.sock:/var/run/docker.sock \
-		-w /src \
-		$(testImage):$(tag) /src/compose.sh
+# ------------------------------------------------
+# Up / Down / Clean 
+local-up:
+	docker-compose -f examples/compose/docker-compose.yml -p fibo up -d
 
-## Run the integration test runner. Runs locally but targets Triton.
-test/triton:
-	$(call check_var, TRITON_PROFILE, \
-		required to run integration tests on Triton.)
-	docker run --rm \
-		-e TAG=$(tag) \
-		-e TRITON_PROFILE=$(TRITON_PROFILE) \
-		-e GIT_BRANCH=$(GIT_BRANCH) \
-		-v ~/.ssh:/root/.ssh:ro \
-		-v ~/.triton/profiles.d:/root/.triton/profiles.d:ro \
-		-w /src \
-		$(testImage):$(tag) /src/triton.sh
-
-# runs the integration test above but entirely within your local
-# development environment rather than the clean test rig
-test/triton/dev:
-	./test/triton.sh
-
+local-down:
+	docker-compose -f examples/compose/docker-compose.yml -p fibo down
 
 # ------------------------------------------------
 
