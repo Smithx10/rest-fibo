@@ -53,8 +53,6 @@ fibo.prototype.getFibonacci = function getFibonacci(num){
 
 log.info('starting');
 
-
-
 // Create our fibo Object
 var fibo = new fibo({log: log});
 
@@ -62,6 +60,7 @@ var log_restify = log.child({app_type: 'fibo-restify'});
 // Create Restify Server
 var server = restify.createServer({
     name: 'fibo-api',
+    version: '1.0.0',
     log: log_restify
 });
 
@@ -77,10 +76,10 @@ server.get('/test', function (req, res, next) {
     next();
 });
 
-// Handle getFibonacci
+//  Create Route getFibonacci  *Note, Restify supports Versioned Routes*
 server.get('/getFibonacci/:num', getFibonacciResponse);
 
-// Create a Simple Respond function
+// Create a Simple Handler
 function getFibonacciResponse(req, res, next) {
     //  Log :num
     req.log.info('Request Param is "%s"', req.params.num);
