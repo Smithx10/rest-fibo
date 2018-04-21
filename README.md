@@ -33,7 +33,7 @@ make local-scale-down
 #### request example
  
 ``
-bruce.smith@Bruces-MBP /g/f/rest-fibo ❯❯❯ http localhost/getFibonacci/-4
+bruce.smith@Bruces-MBP /g/f/rest-fibo ❯❯❯ http localhost/api/fibo/-4
 
 HTTP/1.1 409 Conflict
 Content-Length: 87
@@ -46,13 +46,6 @@ Server: fibo-api
     "message": "The Parameter provided is not a Positive Number."
 }
 ``
-
-
-# run it on triton
-#### required pre-req's
-
-
-
 
 # todo
 - k8s deployment

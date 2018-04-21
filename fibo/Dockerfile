@@ -42,9 +42,9 @@ RUN export CONSUL_VER=1.0.7 \
     && mkdir /data \
     && mkdir /config
 
-COPY src /opt/local/fibo/
-COPY etc/containerpilot.json5 /etc/containerpilot.json5
-COPY bin/preStart.sh /usr/local/bin/preStart.sh
+COPY fibo/src /opt/local/fibo/
+COPY fibo/etc/containerpilot.json5 /etc/containerpilot.json5
+COPY fibo/bin/preStart.sh /usr/local/bin/preStart.sh
 
 # Build fibo
 WORKDIR /opt/local/fibo
