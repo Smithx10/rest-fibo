@@ -4,6 +4,7 @@ var assert =require('assert-plus');
 var bunyan = require('bunyan');
 var epimetheus = require('epimetheus');
 var restify = require('restify');
+var handler = require('restify-errors');
 
 // Set Log Path from EnvVar
 var FIBO_LOGPATH = (process.env.FIBO_LOGPATH) ? process.env.FIBO_LOGPATH : '/var/log';
@@ -56,7 +57,7 @@ function getFibonacciResponse(req, res, next) {
     req.log.debug('Request Param is "%s"', req.params.num);
     fibo.getFibonacci(req.params.num, function getFibArray(err, data) {
         if (err) {
-            res.send(err.message);
+            res.send(new handler.InvalidArgumentError(err.message));
             return next();
         } 
         
