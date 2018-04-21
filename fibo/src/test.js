@@ -10,7 +10,12 @@ var client = clients.createStringClient({
     url: 'http://localhost:8080'
 });
 
-var errorString = 'The Value provided is not a Positive Number.'
+var errorObject = {
+    "code": "InvalidArgument",
+    "message": "The Parameter provided is not a Positive Number."
+} 
+
+var errorString = 'The Parameter provided is not a Positive Number.' 
 
 test('getFibonacci(4): Positive Number' , function(t) {
     fibo.getFibonacci(4, function(err, data) {
@@ -56,7 +61,7 @@ test('/getFibonacci/4: Positive Number', function(t) {
 test('/getFibonacci/-4: Negative Number"', function(t) {
     client.get('/getFibonacci/-4', function(err, req, res, data) {
         var actual = data;
-        var expected = errorString;
+        var expected = JSON.stringify(errorObject);
         t.equal(actual, expected);
         console.log(actual, expected);
     });
@@ -66,7 +71,7 @@ test('/getFibonacci/-4: Negative Number"', function(t) {
 test('/getFibonacci/bob: String"', function(t) {
     client.get('/getFibonacci/bob', function(err, req, res, data) {
         var actual = data;
-        var expected = errorString;
+        var expected = JSON.stringify(errorObject);
         t.equal(actual, expected);
         console.log(actual, expected);
         server.close();
