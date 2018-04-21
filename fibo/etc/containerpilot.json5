@@ -19,7 +19,7 @@
       exec: [
         "node",
         "--abort-on-uncaught-exception", 
-        "/opt/local/fibo/fibo.js"
+        "/opt/local/fibo/api.js"
       ],
       port: 8080,
       tags: [
