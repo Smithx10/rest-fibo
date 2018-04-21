@@ -61,7 +61,7 @@ if you wish to work on rest-fibo itself, you'll first need [nodejs](https://node
 
 
 #### environment variables
-by default _rest-fibo_ will log to */var/log/fibo* if your local env doesn't have perms you can override this by setting FIBO_LOGPATH to your desired path.
+by default _rest-fibo_ will log to */var/log/* if your local env doesn't have perms you can override this by setting FIBO_LOGPATH to your desired path.
 
 #### example
 
