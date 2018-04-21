@@ -3,7 +3,7 @@ a http endpoint that returns an array that contains fibonachii sequence using th
 
 
 
-# overview 
+# built with
 - [bunyan](https://github.com/trentm/node-bunyan)
 - [prometheus](https://prometheus.io/)
 - [consul](https://www.consul.io/)
@@ -13,6 +13,8 @@ a http endpoint that returns an array that contains fibonachii sequence using th
 - [nodejs](https://nodejs.org/)
 - [restify](http://restify.com/)
 - [triton cloud](https://www.joyent.com/triton/compute)
+
+# diagram
 ![application configuration diagram](application-diagram.jpg)
 
 # run it locally in docker
