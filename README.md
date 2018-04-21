@@ -32,7 +32,7 @@ make local-scale-down
 
 #### request example
  
-``
+```
 bruce.smith@Bruces-MBP /g/f/rest-fibo ❯❯❯ http localhost/api/fibo/-4
 
 HTTP/1.1 409 Conflict
@@ -45,7 +45,7 @@ Server: fibo-api
     "code": "InvalidArgument",
     "message": "The Parameter provided is not a Positive Number."
 }
-``
+```
 
 # todo
 - k8s deployment
