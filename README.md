@@ -1,5 +1,5 @@
 # rest-fibo
-a http endpoint that returns an array that contains fibonachii sequence using the [autopilot pattern](http://autopilotpattern.io/).  check out more examples of the autopilot pattern on https://github.com/autopilotpattern/.  this approach to orchestratin is scheduler agnostic, meaning we can port this application to anywhere where we have a unix and ip networking.  my preference of course it to run this on triton because of the networking performance and security.  networking virtualization on triton allows us to mix top of rack networking and overlay fabrics, a spoil i've come to love.
+a http endpoint that returns an array that contains fibonachii sequence using the [autopilot pattern](http://autopilotpattern.io/).  check out more examples of the autopilot pattern on https://github.com/autopilotpattern/.  this approach to orchestratin is scheduler agnostic, meaning we can port this application to anywhere where we have unix and ip networking.  my preference of course it to run this on triton because of the networking performance and security.  networking virtualization on triton allows us to mix top of rack rabrics with overlay fabrics, a spoil i've come to love.
 
 # built with
 - [bunyan](https://github.com/trentm/node-bunyan)
@@ -23,14 +23,14 @@ a http endpoint that returns an array that contains fibonachii sequence using th
 
 
 #### clone, build, deploy, scale
-``
+```
 git clone https://github.com/Smithx10/rest-fibo
 cd rest-fibo
 make local-build
 make local-up
 make local-scale-up
 make local-scale-down
-``
+```
 
 #### request example
  
@@ -50,11 +50,12 @@ Server: fibo-api
 ```
 
 #### prometheus endpoints
-currently fibo will advertise restify metrics on /metrics on port 8080 on the internal network. Fabio is configured currently to only route /api/fibo to the fibo backends. for future expansion we can use fabio's routing to scale horizontally.  if we reach performance limits with fabio, which is also scalable horizontally, we can easily swap out for another LB.
+currently fibo will advertise restify metrics on :8080/metrics. fabio is configured currently to only route /api/fibo to the fibo backends. for future expansion we can use fabio's routing to scale horizontally.  if we reach performance limits with fabio, which is also horizontally scalable, we can easily swap out for another LB.
 
 # todo
 - k8s deployment
 - triton cloud instructions
+- tls & secrets all of the things
 - add prometheus endpoints to fabio and consul
 - operational tests (ex. network partitions, node failures, etc)
 - automate the process with a free ci/cd platform
@@ -81,7 +82,15 @@ node api.js
 ```
 at this point you should be able to hit the endpoint on localhost:8080/api/fbo/:param
 ```
-http localhost:8080/api/fibo/4
+bruce.smith@Bruces-MacBook-Pro /g/f/r/fibo ❯❯❯ http localhost:8080/api/fibo/4                                                                                          ⏎ master ✱
+HTTP/1.1 200 OK
+Connection: keep-alive
+Content-Length: 13
+Content-Type: application/json
+Date: Sat, 21 Apr 2018 19:46:39 GMT
+Server: fibo-api
+
+"[1,1,2,3,5]"
 ```
 
 
