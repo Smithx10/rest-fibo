@@ -14,7 +14,7 @@ a http endpoint that returns an array that contains fibonachii sequence using th
 
 # diagram
 ![application configuration diagram](application-diagram.jpg)
----
+
 # run it locally in docker
 
 #### required pre-req's:
