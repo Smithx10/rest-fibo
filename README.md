@@ -7,7 +7,7 @@ a http endpoint that returns an array that contains fibonachii sequence.
 - [containerpilot](https://www.joyent.com/containerpilot)
 - [docker](https://www.docker.com/)
 - [fabio](https://github.com/fabiolb/fabio)
-- [nodejs](https://nodejs.org/api/)
+- [nodejs](https://nodejs.org/)
 - [restify](http://restify.com/)
 - [triton cloud](https://www.joyent.com/triton/compute)
 
@@ -18,7 +18,7 @@ a http endpoint that returns an array that contains fibonachii sequence.
 - [docker-compose](https://github.com/docker/compose)
 - [httpie](https://github.com/jakubroztocil/httpie)
 - [git](https://git-scm.com/)
-- [make](https://www.gnu.org/software/make/)
+- [gnumake](https://www.gnu.org/software/make/)
 
 
 #### clone, build, deploy, scale
@@ -57,7 +57,8 @@ Server: fibo-api
 - cleanup the makefile to do proper versioning with the ci/cd platform
 
 # developing rest-fibo
-if you wish to work on rest-fibo itself, you'll first need [nodejs]() installed. All the modules used should work 6.9.0 and newer.
+if you wish to work on rest-fibo itself, you'll first need [nodejs](https://nodejs.org/) installed. All the modules used should work 6.9.0 and newer. The [dtrace-provider](https://github.com/chrisa/node-dtrace-provider) will require [gnumake](https://www.gnu.org/software/make/) and [python](https://www.python.org/) to build.    
+
 
 #### environment variables
 by default _rest-fibo_ will log to */var/log/fibo* if your local env doesn't have perms you can override this by setting FIBO_LOGPATH to your desired path.
@@ -67,7 +68,15 @@ by default _rest-fibo_ will log to */var/log/fibo* if your local env doesn't hav
 ```
 git clone https://github.com/Smithx10/rest-fibo
 cd rest-fibo/fibo/src
-npm install 
+npm install
+mkdir -p ~/var/log
 export FIBO_LOGPATH=~/var/log
 node api.js
 ```
+at this point you should be able to hit the endpoint on localhost:8080/api/fbo/:param
+```
+http localhost:8080/api/fibo/4
+```
+
+
+
