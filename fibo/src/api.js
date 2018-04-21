@@ -37,12 +37,12 @@ epimetheus.instrument(server);
 
 // Define our Routes
 server.pre(function (req, res, next) {
-    req.log.info({req: req}, 'start');
+    req.log.debug({req: req}, 'start');
     next();
 });
 
 server.get('/test', function (req, res, next) {
-    req.log.info('url is "%s"', req.url);
+    req.log.debug('url is "%s"', req.url);
     res.send({ test: 'test' });
     next();
 });
@@ -53,31 +53,29 @@ server.get('/getFibonacci/:num', getFibonacciResponse);
 // Create a Simple Handler
 function getFibonacciResponse(req, res, next) {
     //  Log :num
-    req.log.info('Request Param is "%s"', req.params.num);
-
-    if (Math.sign(req.params.num) === 1) {
-        req.params.num = parseInt(req.params.num);
-        fibo.getFibonacci(req.params.num, function getFibArray(err, data) {
-            if (err) {
-                throw err;
-            } else {
-                res.send(JSON.stringify(data));
-            };
-        });
-    } else {
-        res.send('Please use a Postiive Number');
-    };
-
-  next();
+    req.log.debug('Request Param is "%s"', req.params.num);
+    fibo.getFibonacci(req.params.num, function getFibArray(err, data) {
+        if (err) {
+            res.send(err.message);
+            return next();
+        } 
+        
+        res.send(JSON.stringify(data));
+        next();
+    });
 };
 
 // log the response
 server.on('after', function (req, res, route) {
-    req.log.info({res: res}, "finished");
+    req.log.debug({res: res}, "finished");
 });
 
 // Start the http Server on the Desired Port
 server.listen(8080, function () {
-    console.log('ready on %s', server.url);
+    log_restify.info('ready on %s', server.url);
 });
+
+module.exports = {
+    server: server
+}
 

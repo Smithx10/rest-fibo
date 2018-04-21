@@ -7,10 +7,10 @@
     "assert-plus": "^1.0.0",
     "bunyan": "^1.8.12",
     "epimetheus": "^1.0.55",
-    "restify": "^7.1.1",
-    "restify-errors": "^6.0.0"
+    "restify": "^7.1.1"
   },
   "devDependencies": {
+    "restify-clients": "^2.0.2",
     "tape": "^4.9.0"
   },
   "scripts": {
