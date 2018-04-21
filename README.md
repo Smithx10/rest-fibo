@@ -2,22 +2,23 @@
 a http endpoint that returns an array that contains fibonachii sequence.
 
 # built with
-- consul
-- containerpilot
-- docker
-- fabio
-- nodeJS
-- restify
-- triton cloud
+- [bunyan](https://github.com/trentm/node-bunyan)
+- [consul](https://www.consul.io/)
+- [containerpilot](https://www.joyent.com/containerpilot)
+- [docker](https://www.docker.com/)
+- [fabio](https://github.com/fabiolb/fabio)
+- [nodejs](https://nodejs.org/api/)
+- [restify](http://restify.com/)
+- [triton cloud](https://www.joyent.com/triton/compute)
 
 # run it locally in docker
 
 #### required pre-req's:
-- docker
-- docker-compose
-- httpie
-- git
-- make
+- [docker](https://www.docker.com/)
+- [docker-compose](https://github.com/docker/compose)
+- [httpie](https://github.com/jakubroztocil/httpie)
+- [git](https://git-scm.com/)
+- [make](https://www.gnu.org/software/make/)
 
 
 #### clone, build, deploy, scale
