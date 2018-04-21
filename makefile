@@ -26,7 +26,7 @@ local-build:
 	docker build -f fabio/Dockerfile -t=smithx10/fabio:latest .
 
 triton-build: 
-	triton-docker build -f fibo/Dockerfile -t=smithx10/fibo:latest .
+	triton-docker build -f fibo/Dockerfile -t=$(image)}:latest .
 	triton-docker build -f fabio/Dockerfile -t=smithx10/fabio:latest .
 
 ## This Process would be taken care of in CI to make sure the application is cleanly deployed.  For now, I'm just going to show operability.
