@@ -1,7 +1,9 @@
 # rest-fibo
 a http endpoint that returns an array that contains fibonachii sequence using the [autopilot pattern](http://autopilotpattern.io/).  check out more examples of the autopilot pattern on https://github.com/autopilotpattern/.  this approach to orchestratin is scheduler agnostic, meaning we can port this application to anywhere where we have unix and ip networking.  my preference of course it to run this on triton because of the networking performance and security.  networking virtualization on triton allows us to mix top of rack rabrics with overlay fabrics, a spoil i've come to love.
 
-# built with
+
+
+# overview 
 - [bunyan](https://github.com/trentm/node-bunyan)
 - [prometheus](https://prometheus.io/)
 - [consul](https://www.consul.io/)
@@ -11,6 +13,7 @@ a http endpoint that returns an array that contains fibonachii sequence using th
 - [nodejs](https://nodejs.org/)
 - [restify](http://restify.com/)
 - [triton cloud](https://www.joyent.com/triton/compute)
+![application configuration diagram](application-diagram.jpg)
 
 # run it locally in docker
 
