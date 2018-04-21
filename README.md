@@ -56,6 +56,7 @@ currently fibo will advertise restify metrics on :8080/metrics. fabio is configu
 - k8s deployment
 - triton cloud instructions
 - tls & secrets all of the things
+- autogen documentation with something like [swagger-restify](https://www.npmjs.com/package/swagger-restify)
 - add prometheus endpoints to fabio and consul
 - operational tests (ex. network partitions, node failures, etc)
 - automate the process with a free ci/cd platform
@@ -92,6 +93,8 @@ Server: fibo-api
 
 "[1,1,2,3,5]"
 ```
+
+# Debugging and Observability
 
 
 
