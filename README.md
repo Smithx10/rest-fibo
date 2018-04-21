@@ -1,8 +1,9 @@
 # rest-fibo
-a http endpoint that returns an array that contains fibonachii sequence.
+a http endpoint that returns an array that contains fibonachii sequence using the [autopilot pattern](http://autopilotpattern.io/).  check out more examples of the autopilot pattern on https://github.com/autopilotpattern/.  this approach to orchestratin is scheduler agnostic, meaning we can port this application to anywhere where we have a unix and ip networking.  my preference of course it to run this on triton because of the networking performance and security.  networking virtualization on triton allows us to mix top of rack networking and overlay fabrics, a spoil i've come to love.
 
 # built with
 - [bunyan](https://github.com/trentm/node-bunyan)
+- [prometheus](https://prometheus.io/)
 - [consul](https://www.consul.io/)
 - [containerpilot](https://www.joyent.com/containerpilot)
 - [docker](https://www.docker.com/)
@@ -48,13 +49,18 @@ Server: fibo-api
 }
 ```
 
+#### prometheus endpoints
+currently fibo will advertise restify metrics on /metrics on port 8080 on the internal network. Fabio is configured currently to only route /api/fibo to the fibo backends. for future expansion we can use fabio's routing to scale horizontally.  if we reach performance limits with fabio, which is also scalable horizontally, we can easily swap out for another LB.
+
 # todo
 - k8s deployment
 - triton cloud instructions
+- add prometheus endpoints to fabio and consul
 - operational tests (ex. network partitions, node failures, etc)
 - automate the process with a free ci/cd platform
 - rotate log data to Manta / Object storage
 - cleanup the makefile to do proper versioning with the ci/cd platform
+- add pretty graphs with mermaid, maybe?
 
 # developing rest-fibo
 if you wish to work on rest-fibo itself, you'll first need [nodejs](https://nodejs.org/) installed. All the modules used should work 6.9.0 and newer. The [dtrace-provider](https://github.com/chrisa/node-dtrace-provider) will require [gnumake](https://www.gnu.org/software/make/) and [python](https://www.python.org/) to build.    
