@@ -17,39 +17,40 @@ testImage := $(namespace)/fibo-testrunner
 help:
 	@awk '/^##.*$$/,/[a-zA-Z_-]+:/' $(MAKEFILE_LIST) | awk '!(NR%2){print $$0p}{p=$$0}' | awk 'BEGIN {FS = ":.*?## "}; {printf "\033[36m%-20s\033[0m %s\n", $$1, $$2}' | sort
 
-
 # ------------------------------------------------
 # Container builds
 
 ## Builds the application container image locally
-build:
-	docker build -f fibo/Dockerfile -t=smithx10/fibo:latest .
+local-build:
+	docker build -f fibo/Dockerfile -t=$(image):latest .
 	docker build -f fabio/Dockerfile -t=smithx10/fabio:latest .
 
-## Push the current application container images to the Docker Registry
-push:
-	docker push $(image):$(tag)
-	docker push $(testImage):$(tag)
+triton-build: 
+	triton-docker build -f fibo/Dockerfile -t=smithx10/fibo:latest .
+	triton-docker build -f fabio/Dockerfile -t=smithx10/fabio:latest .
+
+## This Process would be taken care of in CI to make sure the application is cleanly deployed.  For now, I'm just going to show operability.
+
+# Push the current application container images to the Docker Registry
+#push:
+	#docker push $(image):$(tag)
+	#docker push $(testImage):$(tag)
 
 ## Tag the current images as 'latest' and push them to the Docker Registry
-ship:
-	docker tag $(image):$(tag) $(image):latest
-	docker tag $(testImage):$(tag) $(testImage):latest
-	docker tag $(image):$(tag) $(image):latest
-	docker push $(image):$(tag)
-	docker push $(image):latest
+#ship:
+	#docker tag $(image):$(tag) $(image):latest
+	#docker tag $(testImage):$(tag) $(testImage):latest
+	#docker tag $(image):$(tag) $(image):latest
+	#docker push $(image):$(tag)
+	#docker push $(image):latest
 
 
 # ------------------------------------------------
 # Test running
 
-## Pull the container images from the Docker Hub
-pull:
-	docker pull $(image):$(tag)
-
 
 # ------------------------------------------------
-# Up / Down / Clean 
+# Up / Down / Clean Locally
 local-up:
 	docker-compose -f examples/compose/docker-compose.yml -p fibo up -d
 
@@ -57,6 +58,18 @@ local-down:
 	docker-compose -f examples/compose/docker-compose.yml -p fibo down
 
 # ------------------------------------------------
+# Up / Down / Clean on Triton
+triton-up:
+	triton-compose -f examples/triton/docker-compose.yml -p fibo up -d
+
+triton-down:
+	triton-compose -f examples/triton/docker-compose.yml -p fibo down
+
+int-tests:
+
+
+
+
 
 ## Print environment for build debugging
 debug:
