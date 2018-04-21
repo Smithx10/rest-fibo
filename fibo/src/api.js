@@ -49,7 +49,7 @@ server.get('/test', function (req, res, next) {
 });
 
 //  Create Route getFibonacci  *Note, Restify supports Versioned Routes*
-server.get('/getFibonacci/:num', getFibonacciResponse);
+server.get('/api/fibo/:num', getFibonacciResponse);
 
 // Create a Simple Handler
 function getFibonacciResponse(req, res, next) {

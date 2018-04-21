@@ -23,7 +23,7 @@
       ],
       port: 8080,
       tags: [
-      {{ if .FIBO_DEV }}"urlprefix-localhost/getFibonacci/"{{ else }}"urlprefix-fibo.svc.smith.tritonhost.com/getFibonacci/"{{ end}},
+      {{ if .FIBO_DEV }}"urlprefix-localhost/api/fibo/"{{ else }}"urlprefix-fibo.svc.smith.tritonhost.com/api/fibo/"{{ end}},
         "version-1.0.0"
       ],
       when: {

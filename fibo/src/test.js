@@ -48,7 +48,7 @@ test('getFibonacci("bob"): String"', function(t) {
 });
 
 
-test('/getFibonacci/4: Positive Number', function(t) {
+test('/api/fibo/4: Positive Number', function(t) {
     client.get('/getFibonacci/4', function(err, req, res, data) {
         var actual = data;
         var expected = '[1,1,2,3,5]';
@@ -58,7 +58,7 @@ test('/getFibonacci/4: Positive Number', function(t) {
     t.end();
 });
 
-test('/getFibonacci/-4: Negative Number"', function(t) {
+test('/api/fibo/-4: Negative Number"', function(t) {
     client.get('/getFibonacci/-4', function(err, req, res, data) {
         var actual = data;
         var expected = JSON.stringify(errorObject);
@@ -68,7 +68,7 @@ test('/getFibonacci/-4: Negative Number"', function(t) {
     t.end();
 });
 
-test('/getFibonacci/bob: String"', function(t) {
+test('/api/fibo/bob: String"', function(t) {
     client.get('/getFibonacci/bob', function(err, req, res, data) {
         var actual = data;
         var expected = JSON.stringify(errorObject);
