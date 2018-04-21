@@ -69,6 +69,7 @@ test('/getFibonacci/bob: String"', function(t) {
         var expected = errorString;
         t.equal(actual, expected);
         console.log(actual, expected);
+        server.close();
     });
     t.end();
 });
