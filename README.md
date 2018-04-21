@@ -50,6 +50,13 @@ Server: fibo-api
 }
 ```
 
+#### run it on triton 
+- [triton-docker-cli](https://github.com/joyent/triton-docker-cli)
+- account on [joyent](https://www.joyent.com/)
+
+_note: in the docker-compose.yml the consul ports are exposed to the external facing vlan, in production you should not do this._
+
+
 #### prometheus endpoints
 currently fibo will advertise restify metrics on :8080/metrics. fabio is configured currently to only route /api/fibo to the fibo backends. for future expansion we can use fabio's routing to scale horizontally.  if we reach performance limits with fabio, which is also horizontally scalable, we can easily swap out for another LB.
 
