@@ -31,19 +31,6 @@ triton-build:
 
 ## This Process would be taken care of in CI to make sure the application is cleanly deployed.  For now, I'm just going to show operability.
 
-# Push the current application container images to the Docker Registry
-#push:
-	#docker push $(image):$(tag)
-	#docker push $(testImage):$(tag)
-
-## Tag the current images as 'latest' and push them to the Docker Registry
-#ship:
-	#docker tag $(image):$(tag) $(image):latest
-	#docker tag $(testImage):$(tag) $(testImage):latest
-	#docker tag $(image):$(tag) $(image):latest
-	#docker push $(image):$(tag)
-	#docker push $(image):latest
-
 
 # ------------------------------------------------
 # Test running
