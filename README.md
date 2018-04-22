@@ -33,9 +33,18 @@ make local-up
 make local-scale-up
 make local-scale-down
 ```
-#### request example
- 
+#### request examples
+
 ```
+bruce.smith@Bruces-MacBook-Pro /g/f/rest-fibo ❯❯❯ http localhost/api/fibo/10                                                                                         ⏎ master ✱ ◼
+HTTP/1.1 200 OK
+Content-Length: 29
+Content-Type: application/json
+Date: Sun, 22 Apr 2018 00:38:35 GMT
+Server: fibo-api
+
+"[0,1,1,2,3,5,8,13,21,34,55]"
+
 bruce.smith@Bruces-MBP /g/f/rest-fibo ❯❯❯ http localhost/api/fibo/-4
 
 HTTP/1.1 409 Conflict
@@ -122,6 +131,19 @@ Stopping fibo_consul_1 ...
 Stopping fibo_consul_2 ...
 Stopping fibo_consul_3 ...
 ```
+#### request examples
+```
+bruce.smith@Bruces-MacBook-Pro /g/f/rest-fibo ❯❯❯ http fibo.svc.smith.tritonhost.com/api/fibo/40                                                                         master ◼
+HTTP/1.1 200 OK
+Content-Length: 223
+Content-Type: application/json
+Date: Sun, 22 Apr 2018 00:37:23 GMT
+Server: fibo-api
+
+"[0,1,1,2,3,5,8,13,21,34,55,89,144,233,377,610,987,1597,2584,4181,6765,10946,17711,28657,46368,75025,121393,196418,317811,514229,832040,1346269,2178309,3524578,5702887,9227465,14930352,24157817,39088169,63245986,102334155]"
+```
+
+
 
 # metrics
 currently fibo will advertise restify metrics on :8080/metrics. i plan on adding prometheus endpoints to all of the applications.
