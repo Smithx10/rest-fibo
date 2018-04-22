@@ -40,7 +40,7 @@ fibo.prototype.getFibonacci = function getFibonacci(num, callback){
 
     this.log.debug({user_input: num})
     var resultsArray = [];
-    var a = 1, b = 0, temp;
+    var a = 0, b = 1, temp;
 
     while (num >= 0){
         temp = a;
