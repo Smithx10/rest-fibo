@@ -21,6 +21,7 @@
         "--abort-on-uncaught-exception", 
         "/opt/local/fibo/api.js"
       ],
+      restarts: "unlimited",
       port: 8080,
       tags: [
       {{ if .FIBO_DEV }}"urlprefix-localhost/api/fibo/"{{ else }}"urlprefix-fibo.svc.smith.tritonhost.com/api/fibo/"{{ end}},
@@ -31,7 +32,7 @@
         once: "exitSuccess"
       },
       health: {
-        exec: "curl -so /dev/null localhost:8080/getFibonacci/10",
+        exec: "curl -sf localhost:8080/test",
         interval: 5,
         ttl: 10
       },
