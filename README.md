@@ -55,6 +55,7 @@ Server: fibo-api
 - [triton-docker-cli](https://github.com/joyent/triton-docker-cli)
 - account on [joyent](https://www.joyent.com/)
 - [httpie](https://github.com/jakubroztocil/httpie)
+
 _note: in the docker-compose.yml the consul ports are exposed to the external facing vlan, in production you should not do this._
 
 #### clone, build, deploy, scale
