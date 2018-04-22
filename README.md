@@ -60,6 +60,21 @@ _note: in the docker-compose.yml the consul ports are exposed to the external fa
 
 #### clone, build, deploy, scale
 ```
+bruce.smith@Bruces-MacBook-Pro /g/f/rest-fibo ❯❯❯ make triton-build                                                                                                      master ◼ triton-docker build -f fibo/Dockerfile -t=smithx10/fibo:latest .
+Sending build context to Docker daemon  3.17 MB
+Step 1/11 : FROM node:latest
+ ---> aa3e171e4e95
+Step 2/11 : ENV CONTAINERPILOT=/etc/containerpilot.json5
+ ---> Using cache
+ ---> 0f727e68b769
+Step 3/11 : RUN apt-get update     && apt-get install -y         bash         curl         make         unzip         python     && mkdir -p /opt/local/fibo
+ ---> Using cache
+ ---> ab528e3cc585
+Step 4/11 : RUN export JQ_VER=1.5      && export JQ_SHA256=c6b3a7d7d3e7b70c6f51b706a3b90bd01833846c54d32ca32f0027f00226ff6d      && export JQ_URL=https://github.com/stedolan/jq/r
+eleases/download/jq-${JQ_VER}/jq-linux64      && curl -Ls --fail -o /bin/jq ${JQ_URL}      && echo "${JQ_SHA256} /bin/jq" | sha256sum -c      && chmod +x /bin/jq
+ ---> Using cache
+ ---> 634258a2d394
+
 make triton-up
 bruce.smith@Bruces-MacBook-Pro /g/f/rest-fibo ❯❯❯ make triton-up                                                                                                         master ◼
 triton-compose -f examples/triton/docker-compose.yml -p fibo scale consul=3 fabio=3 fibo=3
