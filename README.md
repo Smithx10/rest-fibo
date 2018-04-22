@@ -146,7 +146,7 @@ Server: fibo-api
 
 
 # metrics
-currently fibo will advertise restify metrics on :8080/metrics. i plan on adding prometheus endpoints to all of the applications.
+currently fibo will advertise restify prometheus metrics on :8080/metrics. i plan on adding prometheus endpoints to all of the applications.
 
 # todo
 - k8s deployment
