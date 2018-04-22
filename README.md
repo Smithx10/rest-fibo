@@ -108,12 +108,8 @@ Stopping fibo_consul_2 ...
 Stopping fibo_consul_3 ...
 ```
 
-
-
-
-
-#### prometheus endpoints
-currently fibo will advertise restify metrics on :8080/metrics. fabio is configured currently to only route /api/fibo to the fibo backends. for future expansion we can use fabio's routing to scale horizontally.  if we reach performance limits with fabio, which is also horizontally scalable, we can easily swap out for another LB.
+# metrics
+currently fibo will advertise restify metrics on :8080/metrics. i plan on adding prometheus endpoints to all of the applications.
 
 # todo
 - k8s deployment
@@ -126,6 +122,7 @@ currently fibo will advertise restify metrics on :8080/metrics. fabio is configu
 - rotate log data to Manta / Object storage
 - cleanup the makefile to do proper versioning with the ci/cd platform
 - add pretty graphs with mermaid, maybe?
+- add prometheus metrics to all the applications
 
 # developing rest-fibo
 if you wish to work on rest-fibo itself, you'll first need [nodejs](https://nodejs.org/) installed. All the modules used should work 6.9.0 and newer. The [dtrace-provider](https://github.com/chrisa/node-dtrace-provider) will require [gnumake](https://www.gnu.org/software/make/) and [python](https://www.python.org/) to build.    
