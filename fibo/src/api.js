@@ -21,7 +21,7 @@ var log = bunyan.createLogger({
         },
         {
             stream: process.stdout,
-
+            level: 'info'
         }
     ],
     serializers: restify.bunyan.serializers,

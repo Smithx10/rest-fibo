@@ -18,7 +18,8 @@ var log = bunyan.createLogger({
             path: FIBO_LOGPATH + '/fibo.log'
         },
         {
-            stream: process.stdout
+            stream: process.stdout,
+            level: 'info'
         }
     ],
 });
