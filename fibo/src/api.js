@@ -32,6 +32,7 @@ var log_restify = log.child({app_type: 'fibo-restify'});
 var server = restify.createServer({
     name: 'fibo-api',
     version: '1.0.0',
+    dtrace: true,
     log: log_restify
 });
 
