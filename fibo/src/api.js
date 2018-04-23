@@ -60,6 +60,7 @@ function getFibonacciResponse(req, res, next) {
     req.log.debug('Request Param is "%s"', req.params.num);
     fibo.getFibonacci(req.params.num, function getFibArray(err, data) {
         if (err) {
+            req.log.error(err);
             res.send(new handler.InvalidArgumentError(err.message));
             return next();
         } 

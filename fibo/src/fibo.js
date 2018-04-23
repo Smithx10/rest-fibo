@@ -38,7 +38,9 @@ fibo.prototype.getFibonacci = function getFibonacci(num, callback){
     this.log.info('Processing: %d', num )
     // This handles the missing number assertion.  I prefer to not change types up front and handle everything here, for now. arrgghhh.
     if (Math.sign(num) != 1) {
-        callback(new Error('The Parameter provided is not a Positive Number.'));
+        var e = new Error('The Parameter provided is not a Positive Number.');
+        this.log.error(e);
+        callback(e);
         return;
     }
 
