@@ -7,6 +7,7 @@ RUN apt-get update \
         bash \
         curl \
         make \
+        gcc \
         unzip \
         python \
     && mkdir -p /opt/local/fibo
