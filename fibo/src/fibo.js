@@ -13,7 +13,8 @@ var log = bunyan.createLogger({
         {
             type: 'rotating-file',
             period: '1d',
-            count: 7, 
+            count: 7,
+            level: 'debug',
             path: FIBO_LOGPATH + '/fibo.log'
         },
         {
