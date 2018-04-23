@@ -20,7 +20,7 @@ var errorString = 'The Parameter provided is not a Positive Number.'
 test('getFibonacci(4): Positive Number' , function(t) {
     fibo.getFibonacci(4, function(err, data) {
         var actual = data;
-        var expected = [1,1,2,3,5];
+        var expected = [0,1,1,2,3];
         t.deepEqual(actual, expected);
         console.log(actual, expected);
     });
@@ -49,9 +49,9 @@ test('getFibonacci("bob"): String"', function(t) {
 
 
 test('/api/fibo/4: Positive Number', function(t) {
-    client.get('/getFibonacci/4', function(err, req, res, data) {
+    client.get('/api/fibo/4', function(err, req, res, data) {
         var actual = data;
-        var expected = '[1,1,2,3,5]';
+        var expected = '[0,1,1,2,3]';
         t.equal(actual, expected);
         console.log(actual, expected);
     });
@@ -59,7 +59,7 @@ test('/api/fibo/4: Positive Number', function(t) {
 });
 
 test('/api/fibo/-4: Negative Number"', function(t) {
-    client.get('/getFibonacci/-4', function(err, req, res, data) {
+    client.get('/api/fibo/-4', function(err, req, res, data) {
         var actual = data;
         var expected = JSON.stringify(errorObject);
         t.equal(actual, expected);
@@ -69,7 +69,7 @@ test('/api/fibo/-4: Negative Number"', function(t) {
 });
 
 test('/api/fibo/bob: String"', function(t) {
-    client.get('/getFibonacci/bob', function(err, req, res, data) {
+    client.get('/api/fibo/bob', function(err, req, res, data) {
         var actual = data;
         var expected = JSON.stringify(errorObject);
         t.equal(actual, expected);

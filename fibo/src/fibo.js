@@ -25,20 +25,22 @@ var log = bunyan.createLogger({
 // Create Prototype
 function fibo(opts) {
     this.log = opts.log.child({app_type: 'fibo-function'});
-    this.log.info('Creating a Fibo');
+    this.log.debug('Creating a Fibo');
 };
 
 // Get Fibonacci number from user input
 fibo.prototype.getFibonacci = function getFibonacci(num, callback){
     
     assert.func(callback, 'callback');
+
+    this.log.info('Processing: %d', num )
     // This handles the missing number assertion.  I prefer to not change types up front and handle everything here, for now. arrgghhh.
     if (Math.sign(num) != 1) {
         callback(new Error('The Parameter provided is not a Positive Number.'));
         return;
     }
 
-    this.log.info({user_input: num})
+    this.log.debug({user_input: num})
     var resultsArray = [];
     var a = 0, b = 1, temp;
 
@@ -51,7 +53,7 @@ fibo.prototype.getFibonacci = function getFibonacci(num, callback){
         num--;
     };
 
-    this.log.info({returned_value: b});
+    this.log.debug({returned_value: b});
     callback(null, resultsArray);
 };
 

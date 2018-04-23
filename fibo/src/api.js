@@ -38,12 +38,12 @@ epimetheus.instrument(server);
 
 // Define our Routes
 server.pre(function (req, res, next) {
-    req.log.info({req: req}, 'start');
+    req.log.debug({req: req}, 'start');
     next();
 });
 
 server.get('/test', function (req, res, next) {
-    req.log.info('url is "%s"', req.url);
+    req.log.debug('url is "%s"', req.url);
     res.send({ test: 'test' });
     next();
 });
@@ -53,8 +53,9 @@ server.get('/api/fibo/:num', getFibonacciResponse);
 
 // Create a Simple Handler
 function getFibonacciResponse(req, res, next) {
+    req.log.info('Handling a request for "%w"', req.url)
     //  Log :num
-    req.log.info('Request Param is "%s"', req.params.num);
+    req.log.debug('Request Param is "%s"', req.params.num);
     fibo.getFibonacci(req.params.num, function getFibArray(err, data) {
         if (err) {
             res.send(new handler.InvalidArgumentError(err.message));
@@ -68,7 +69,7 @@ function getFibonacciResponse(req, res, next) {
 
 // log the response
 server.on('after', function (req, res, route) {
-    req.log.info({res: res}, "finished");
+    req.log.debug({res: res}, "finished");
 });
 
 // Start the http Server on the Desired Port
