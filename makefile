@@ -44,6 +44,9 @@ local-up:
 local-down:
 	docker-compose -f examples/compose/docker-compose.yml -p fibo down
 
+local-scale:
+	docker-compose -f examples/compose/docker-compose.yml -p fibo scale fibo=3
+
 # ------------------------------------------------
 # Up / Down / Clean on Triton
 triton-up:
