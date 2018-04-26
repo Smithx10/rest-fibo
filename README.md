@@ -33,6 +33,14 @@ make local-up
 make local-scale-up
 make local-scale-down
 ```
+#### watch a video!!!!
+
+On OSX: 
+[![asciicast](https://asciinema.org/a/NhfSFZQgyO32zQpNu6b0nqkr9.png)](https://asciinema.org/a/NhfSFZQgyO32zQpNu6b0nqkr9)
+
+On ubuntu 16.04:
+[![asciicast](https://asciinema.org/a/CE12ArLrNtmQ7K0wJCCMH87Lc.png)](https://asciinema.org/a/CE12ArLrNtmQ7K0wJCCMH87Lc)
+
 #### request examples
 
 ```
