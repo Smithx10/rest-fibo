@@ -206,3 +206,7 @@ Server: fibo-api
 # debugging and observability
 fibo will dump core on an uncaught exception.  we can debug this core dump using the v8 ustack helper in [mdb](https://illumos.org/man/1/mdb). processes and procedures can be found at https://www.joyent.com/blog/debugging-nodejs-with-mdb. the obvious benefit here is that the service will come back online and we can root cause post-mortem. here is a video more about why you need this.  https://www.youtube.com/watch?v=O1YP8QP9gLA
 restify has dtrace-probes built into the library, this will allow us to instrument and debug restify without having to change / rebuild.  more about dtrace can be found at http://dtrace.org/guide/chp-intro.html and http://restify.com/docs/dtrace/ and pretty much everywhere.  It is *awesome*
+
+#### watch another video
+
+[![asciicast](https://asciinema.org/a/E0Kb4HiRAqECqfxMRwDqlfeVR.png)](https://asciinema.org/a/E0Kb4HiRAqECqfxMRwDqlfeVR)
