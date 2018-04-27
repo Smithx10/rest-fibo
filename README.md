@@ -75,6 +75,11 @@ Server: fibo-api
 
 _note: in the docker-compose.yml the consul ports are exposed to the external facing vlan, in production you should not do this._
 
+
+#### video !!!!
+
+[![asciicast](https://asciinema.org/a/bThWuVdzIScXbOdMiv5Vq5758.png)](https://asciinema.org/a/bThWuVdzIScXbOdMiv5Vq5758)
+
 #### clone, build, deploy, scale
 ```
 bruce.smith@Bruces-MacBook-Pro /g/f/rest-fibo ❯❯❯ make triton-build                                                                                                      master ◼ triton-docker build -f fibo/Dockerfile -t=smithx10/fibo:latest .
