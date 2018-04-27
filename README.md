@@ -35,10 +35,10 @@ make local-scale-down
 ```
 #### watch a video!!!!
 
-On OSX: 
+on osx: 
 [![asciicast](https://asciinema.org/a/NhfSFZQgyO32zQpNu6b0nqkr9.png)](https://asciinema.org/a/NhfSFZQgyO32zQpNu6b0nqkr9)
 
-On ubuntu 16.04:
+on ubuntu 16.04:
 [![asciicast](https://asciinema.org/a/CE12ArLrNtmQ7K0wJCCMH87Lc.png)](https://asciinema.org/a/CE12ArLrNtmQ7K0wJCCMH87Lc)
 
 #### request examples
@@ -78,6 +78,7 @@ _note: in the docker-compose.yml the consul ports are exposed to the external fa
 
 #### video !!!!
 
+on triton:
 [![asciicast](https://asciinema.org/a/bThWuVdzIScXbOdMiv5Vq5758.png)](https://asciinema.org/a/bThWuVdzIScXbOdMiv5Vq5758)
 
 #### clone, build, deploy, scale
